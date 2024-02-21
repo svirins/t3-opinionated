@@ -1,6 +1,10 @@
 # t3-turbo
 
-- removed Expo
-- Drizzle -> Prisma
-- serverless PlanetScale
-- edge -> node (Next.js pages)
+- Framework: Next.js
+- Database: Postgres (with PostGIS)
+- ORM: Prisma
+- API: tRPC + Tanstack Query
+- Deployment: Vercel
+- Styling: Tailwind CSS + Daisy UI
+- Maps: Mapbox
+- State: Jotai

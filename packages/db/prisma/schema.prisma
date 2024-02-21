@@ -9,76 +9,11 @@ datasource db {
   extensions = [postgis]
 }
 
-model Group {
-  id          String    @id @default(cuid())
-  name        String    @unique
-  createdAt   DateTime  @default(now())
-  established DateTime? @default(now())
-  phone       String?
-  email       String?
-  address     Address?
-  days        Day[]
-}
-
-model Address {
-  id       String           @id @default(cuid())
-  city     String
-  state    State
-  street   String
-  room     String?
-  comments String?
-  location PointOfInterest?
-  group    Group            @relation(fields: [groupId], references: [id])
-  groupId  String           @unique
-}
-
-model PointOfInterest {
-  id        String                                @id @default(cuid())
-  name      String
-  location  Unsupported("geography(Point, 4326)")
-  address   Address?                              @relation(fields: [addressId], references: [id])
-  addressId String?                               @unique
-}
-
-model Day {
-  id       String    @id @default(cuid())
-  name     WeekDay
-  meetings Meeting[]
-  group    Group     @relation(fields: [groupId], references: [id])
-  groupId  String
-}
-
-model Meeting {
-  id    String   @id @default(cuid())
-  start DateTime @db.Time()
-  end   DateTime @db.Time()
-  topic Topic
-  day   Day      @relation(fields: [dayId], references: [id])
-  dayId String
-}
-
-enum WeekDay {
-  Monday
-  Tuesday
-  Wednesday
-  Thursday
-  Friday
-  Saturday
-  Sunday
-}
-
-enum Topic {
-  Steps
-  Traditions
-  Speaker
-  Free
-}
-
-enum State {
-  Brestskaya
-  Vitebskaya
-  Gomelskaya
-  Grodnenskaya
-  Minskaya
-  Mogilevskaya
+model User {
+  id        String   @id @default(uuid())
+  email     String   @unique
+  password  String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  role      Role     @default(USER)
 }
