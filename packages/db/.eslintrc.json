@@ -1,0 +1,32 @@
+{
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": { "project": true },
+  "plugins": ["@typescript-eslint", "@ts-safeql/eslint-plugin"],
+  "env": {
+    "browser": true,
+    "node": true
+  },
+  "rules": {
+    "@ts-safeql/check-sql": [
+      "error",
+      {
+        "connections": [
+          {
+            "connectionUrl": "postgres://postgres.lfmcfcklamzobgtfuogs:6gFhdGc9ecXR2YV3aTm4@aws-0-eu-west-1.pooler.supabase.com:5432/postgres",
+            // The migrations path:
+            "migrationsDir": "./prisma/migrations",
+            "targets": [
+              {
+                // The sql tags that should be checked.
+                // either `db.$queryRaw` or `db.$executeRaw`:
+                "tag": "prisma.+($queryRaw|$executeRaw)",
+                // Transform the query result to array
+                "transform": "{type}[]"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

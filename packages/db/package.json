@@ -1,0 +1,43 @@
+{
+  "name": "@acme/db",
+  "version": "0.1.0",
+  "private": true,
+  "main": "./dist/index.js",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "dist/**"
+  ],
+  "license": "MIT",
+  "scripts": {
+    "build": "pnpm with-env prisma generate && tsup",
+    "clean": "rm -rf .turbo node_modules dist",
+    "push": "pnpm with-env prisma db push",
+    "format": "pnpm with-env prisma format",
+    "studio": "pnpm with-env prisma studio",
+    "with-env": "dotenv -e ../../.env --",
+    "seed": "bun  ./seed/seed.ts",
+    "lint": "eslint --ext .ts ."
+  },
+  "dependencies": {
+    "@prisma/client": "5.8.0",
+    "@prisma/extension-accelerate": "^0.6.2"
+  },
+  "devDependencies": {
+    "@acme/prettier-config": "workspace:*",
+    "@acme/tsconfig": "workspace:*",
+    "@acme/types": "workspace:*",
+    "@ts-safeql/eslint-plugin": "^2.0.3",
+    "@types/eslint": "^8.56.0",
+    "@typescript-eslint/eslint-plugin": "^6.20.0",
+    "@typescript-eslint/parser": "^6.20.0",
+    "dotenv": "^16.4.1",
+    "dotenv-cli": "^7.3.0",
+    "eslint": "^8.56.0",
+    "prettier": "^3.2.4",
+    "prisma": "5.8.0",
+    "tsup": "8.0.1",
+    "typescript": "^5.3.3"
+  },
+  "prettier": "@acme/prettier-config"
+}
