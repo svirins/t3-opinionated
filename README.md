@@ -5,6 +5,5 @@
 - ORM: Prisma
 - API: tRPC + Tanstack Query
 - Deployment: Vercel
-- Styling: Tailwind CSS + Daisy UI
-- Maps: Mapbox
+- Styling: Tailwind CSS + shacdn-ui
 - State: Jotai

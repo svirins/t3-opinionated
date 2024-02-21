@@ -30,8 +30,7 @@ const handler = async (req: Request) => {
     req,
     createContext: () =>
       createTRPCContext({
-        headers: req.headers,
-      }),
+        headers: req.headers      }),
     onError({ error, path }) {
       console.error(`>>> tRPC Error on '${path}'`, error);
     },

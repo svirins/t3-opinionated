@@ -1,9 +1,9 @@
 import type { DefaultSession } from "next-auth";
-import { DrizzleAdapter } from "@auth/prisma-adapter";
+import { PrismaAdapter } from "@auth/prisma-adapter";
 import NextAuth from "next-auth";
-import Discord from "next-auth/providers/discord";
+import Google from "next-auth/providers/google";
 
-import { db, tableCreator } from "@acme/db";
+import { prisma } from "@acme/db";
 
 export type { Session } from "next-auth";
 
@@ -21,8 +21,8 @@ export const {
   signIn,
   signOut,
 } = NextAuth({
-  adapter: DrizzleAdapter(db, tableCreator),
-  providers: [Discord],
+  adapter: PrismaAdapter(prisma),
+  providers: [Google],
   callbacks: {
     session: (opts) => {
       if (!("user" in opts)) throw "unreachable with session strategy";

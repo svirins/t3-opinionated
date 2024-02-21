@@ -5,6 +5,10 @@ import { withAxiom } from "next-axiom";
 
 /** @type {import("next").NextConfig} */
 const config = {
+  images: {
+    // domains: ["res.cloudinary.com"],
+    formats: ["image/avif", "image/webp"]
+  },
   reactStrictMode: true,
 
   /** Enables hot reloading for local packages without a build step */
