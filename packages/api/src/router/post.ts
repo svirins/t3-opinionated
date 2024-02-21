@@ -1,38 +1,29 @@
-import { z } from "zod";
-
-import { prisma } from "@acme/db";
+import { Prisma } from "@acme/db";
+import { CreatePostSchema } from "@acme/validators";
 
 import { createTRPCRouter, protectedProcedure, publicProcedure } from "../trpc";
 
 export const postRouter = createTRPCRouter({
-  // all: publicProcedure.query(({ ctx }) => {
-  //   // return ctx.db.select().from(schema.post).orderBy(desc(schema.post.id));
-  //   return ctx.db.query.post.findMany({
-  //     orderBy: desc(schema.post.id),
-  //     limit: 10,
-  //   });
-  // }),
+  all: publicProcedure.query(async ({ ctx }) => {
+    // !! do we even need to check Prisma errors here?
+    // or it can be handled by the Pisma error log handler?
+    try {
+      const data = await ctx.prisma.post.findMany({
+        // cacheStrategy: { ttl: 60 }
+      });
+      return data;
+    } catch (e) {
+      if (e instanceof Prisma.PrismaClientKnownRequestError) {
+        console.error(`DB error : ${JSON.stringify(e)}`);
+      } else {
+        console.error(`Unknown DB error: `, e);
+      }
+    }
+  }),
 
-  // byId: publicProcedure
-  //   .input(z.object({ id: z.number() }))
-  //   .query(({ ctx, input }) => {
-  //     // return ctx.db
-  //     //   .select()
-  //     //   .from(schema.post)
-  //     //   .where(eq(schema.post.id, input.id));
-
-  //     return ctx.db.query.post.findFirst({
-  //       where: eq(schema.post.id, input.id),
-  //     });
-  //   }),
-
-  // create: protectedProcedure
-  //   .input(CreatePostSchema)
-  //   .mutation(({ ctx, input }) => {
-  //     return ctx.db.insert(schema.post).values(input);
-  //   }),
-
-  // delete: protectedProcedure.input(z.number()).mutation(({ ctx, input }) => {
-  //   return ctx.db.delete(schema.post).where(eq(schema.post.id, input));
-  // }),
+  create: protectedProcedure
+    .input(CreatePostSchema)
+    .mutation(async ({ ctx, input }) => {
+      return ctx.prisma.post.create({ data: input });
+    }),
 });

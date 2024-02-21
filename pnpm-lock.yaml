@@ -45,14 +45,14 @@ importers:
         specifier: ^5.22.2
         version: 5.22.2(react@18.2.0)
       '@trpc/client':
-        specifier: 11.0.0-next-beta.264
-        version: 11.0.0-next-beta.264(@trpc/server@11.0.0-next-beta.264)
+        specifier: 11.0.0-next-beta.289
+        version: 11.0.0-next-beta.289(@trpc/server@11.0.0-next-beta.289)
       '@trpc/react-query':
-        specifier: 11.0.0-next-beta.264
-        version: 11.0.0-next-beta.264(@tanstack/react-query@5.22.2)(@trpc/client@11.0.0-next-beta.264)(@trpc/server@11.0.0-next-beta.264)(react-dom@18.2.0)(react@18.2.0)
+        specifier: 11.0.0-next-beta.289
+        version: 11.0.0-next-beta.289(@tanstack/react-query@5.22.2)(@trpc/client@11.0.0-next-beta.289)(@trpc/server@11.0.0-next-beta.289)(react-dom@18.2.0)(react@18.2.0)
       '@trpc/server':
-        specifier: 11.0.0-next-beta.264
-        version: 11.0.0-next-beta.264
+        specifier: 11.0.0-next-beta.289
+        version: 11.0.0-next-beta.289
       next:
         specifier: ^14.1.0
         version: 14.1.0(react-dom@18.2.0)(react@18.2.0)
@@ -124,8 +124,8 @@ importers:
         specifier: workspace:*
         version: link:../validators
       '@trpc/server':
-        specifier: 11.0.0-next-beta.264
-        version: 11.0.0-next-beta.264
+        specifier: 11.0.0-next-beta.289
+        version: 11.0.0-next-beta.289
       superjson:
         specifier: 2.2.1
         version: 2.2.1
@@ -167,8 +167,8 @@ importers:
         specifier: ^14.1.0
         version: 14.1.0(react-dom@18.2.0)(react@18.2.0)
       next-auth:
-        specifier: 5.0.0-beta.9
-        version: 5.0.0-beta.9(next@14.1.0)(react@18.2.0)
+        specifier: 5.0.0-beta.13
+        version: 5.0.0-beta.13(next@14.1.0)(react@18.2.0)
       react:
         specifier: 18.2.0
         version: 18.2.0
@@ -480,29 +480,6 @@ packages:
     dependencies:
       '@jridgewell/gen-mapping': 0.3.3
       '@jridgewell/trace-mapping': 0.3.22
-    dev: false
-
-  /@auth/core@0.26.3:
-    resolution: {integrity: sha512-Ka6rMjWMdiQCvLW/CnYZxj4Rq2bhQ/ZtU32NLxmtyAaixGb0mRXQ9MxJUBZA7GHovbghdzu55p2Cb54qNlVFzw==}
-    peerDependencies:
-      '@simplewebauthn/browser': ^9.0.1
-      '@simplewebauthn/server': ^9.0.1
-      nodemailer: ^6.8.0
-    peerDependenciesMeta:
-      '@simplewebauthn/browser':
-        optional: true
-      '@simplewebauthn/server':
-        optional: true
-      nodemailer:
-        optional: true
-    dependencies:
-      '@panva/hkdf': 1.1.1
-      '@types/cookie': 0.6.0
-      cookie: 0.6.0
-      jose: 5.2.2
-      oauth4webapi: 2.10.3
-      preact: 10.11.3
-      preact-render-to-string: 5.2.3(preact@10.11.3)
     dev: false
 
   /@auth/core@0.27.0:
@@ -2143,32 +2120,32 @@ packages:
       react: 18.2.0
     dev: false
 
-  /@trpc/client@11.0.0-next-beta.264(@trpc/server@11.0.0-next-beta.264):
-    resolution: {integrity: sha512-He/kE++/rDq/yZr7xCkQmOC+1S3auulLVjBuo6LvuYuFQL+Slf2ObRftbNVWa92GVd/llxV+eNlbzR9mTVPCPg==}
+  /@trpc/client@11.0.0-next-beta.289(@trpc/server@11.0.0-next-beta.289):
+    resolution: {integrity: sha512-jqBzRRXNO9xn+onayc8BH6CDBDFA3NWGxXkuppTm2yu3r7wcbl5S7S5y6SvGGmyVqISoQT3u0t4dz9AZOuETHQ==}
     peerDependencies:
-      '@trpc/server': 11.0.0-next-beta.264+f5f08f35d
+      '@trpc/server': 11.0.0-next-beta.289+27a9183d8
     dependencies:
-      '@trpc/server': 11.0.0-next-beta.264
+      '@trpc/server': 11.0.0-next-beta.289
     dev: false
 
-  /@trpc/react-query@11.0.0-next-beta.264(@tanstack/react-query@5.22.2)(@trpc/client@11.0.0-next-beta.264)(@trpc/server@11.0.0-next-beta.264)(react-dom@18.2.0)(react@18.2.0):
-    resolution: {integrity: sha512-maIb/L1mtfwdTkLzscVhv6MGFwoRUdQkDU++e+9E7EPCSZD4ZJ12MyoDPQp85Wv44ot7frBFbfyWak/woP1zjQ==}
+  /@trpc/react-query@11.0.0-next-beta.289(@tanstack/react-query@5.22.2)(@trpc/client@11.0.0-next-beta.289)(@trpc/server@11.0.0-next-beta.289)(react-dom@18.2.0)(react@18.2.0):
+    resolution: {integrity: sha512-SAn09DmZ4eFYLS0cCHOVNvRHJhHZ2ssUj4LUTj56wym0MieaCSrcxTqiolnaMfF+mWc1SJlLOzebrxaTHPwJSw==}
     peerDependencies:
       '@tanstack/react-query': ^5.0.0
-      '@trpc/client': 11.0.0-next-beta.264+f5f08f35d
-      '@trpc/server': 11.0.0-next-beta.264+f5f08f35d
+      '@trpc/client': 11.0.0-next-beta.289+27a9183d8
+      '@trpc/server': 11.0.0-next-beta.289+27a9183d8
       react: '>=18.2.0'
       react-dom: '>=18.2.0'
     dependencies:
       '@tanstack/react-query': 5.22.2(react@18.2.0)
-      '@trpc/client': 11.0.0-next-beta.264(@trpc/server@11.0.0-next-beta.264)
-      '@trpc/server': 11.0.0-next-beta.264
+      '@trpc/client': 11.0.0-next-beta.289(@trpc/server@11.0.0-next-beta.289)
+      '@trpc/server': 11.0.0-next-beta.289
       react: 18.2.0
       react-dom: 18.2.0(react@18.2.0)
     dev: false
 
-  /@trpc/server@11.0.0-next-beta.264:
-    resolution: {integrity: sha512-h6RJX+C+VgFQusxGVtw3n1PZPLt27ZG70U8cPR5pwmsnE2E3vREijOgEo5MRKoiUhVrjbw8e6gnGVeKzl7uZXg==}
+  /@trpc/server@11.0.0-next-beta.289:
+    resolution: {integrity: sha512-HfBVYUShvktA6M78jrCsRLyeE6l2NdaPJxKg095h4vk0bgWVfz0MgEOCQR/hjGdw0EFLEVcZANhqTZaHEzr36w==}
     dev: false
 
   /@ts-safeql/eslint-plugin@2.0.3(eslint@8.56.0)(libpg-query@16.0.1)(typescript@5.3.3):
@@ -4460,11 +4437,11 @@ packages:
     engines: {node: '>= 0.6'}
     dev: true
 
-  /next-auth@5.0.0-beta.9(next@14.1.0)(react@18.2.0):
-    resolution: {integrity: sha512-BWFiwJ/wzfxWpHnGpAoFsXHSlVofWgFns6tjtIGeDrXfEf3D+afnBpmzCNyek2RNYDVgMHi8Q5uXzFoNBd2l5g==}
+  /next-auth@5.0.0-beta.13(next@14.1.0)(react@18.2.0):
+    resolution: {integrity: sha512-2m2Gq69WQ0YXcHCCpHn2y5z1bxSlqD/XOuAgrdtz49/VIAdTFFeYZz97RYqf6xMF8VGmoG32VUnJ6LzaHk6Fwg==}
     peerDependencies:
       '@simplewebauthn/browser': ^9.0.1
-      '@simplewebauthn/server': ^9.0.1
+      '@simplewebauthn/server': ^9.0.2
       next: ^14
       nodemailer: ^6.6.5
       react: ^18.2.0
@@ -4476,7 +4453,7 @@ packages:
       nodemailer:
         optional: true
     dependencies:
-      '@auth/core': 0.26.3
+      '@auth/core': 0.27.0
       next: 14.1.0(react-dom@18.2.0)(react@18.2.0)
       react: 18.2.0
     dev: false
