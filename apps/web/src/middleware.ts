@@ -1,6 +1,6 @@
 import { authMiddleware } from "@clerk/nextjs";
 
-export default authMiddleware({ publicRoutes: ["/", "/api/(.*)"] });
+export default authMiddleware();
 // TODO: Consider after-auth middleware to a fine-grained control over the redirect
 // https://clerk.com/docs/references/nextjs/auth-middleware
 

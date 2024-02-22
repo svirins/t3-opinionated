@@ -1,7 +1,8 @@
 import type { Metadata, Viewport } from "next";
 import { Inter } from "next/font/google";
 import { ClerkProvider } from "@clerk/nextjs";
-import { AxiomWebVitals } from "next-axiom";
+
+// import { AxiomWebVitals } from "next-axiom";
 
 // import { ThemeProvider, ThemeToggle } from "@acme/ui/theme";
 // import { Toaster } from "@acme/ui/toast";
@@ -45,19 +46,18 @@ export const viewport: Viewport = {
 
 export default function RootLayout(props: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={`${inter.variable}`} suppressHydrationWarning>
-      <AxiomWebVitals />
-      <body className="min-h-screen bg-background font-sans text-foreground antialiased">
-        {/* <ThemeProvider attribute="class" defaultTheme="system" enableSystem> */}
-        <ClerkProvider>
+    <ClerkProvider>
+      <html lang="en" className={`${inter.variable}`} suppressHydrationWarning>
+        <body className="min-h-screen bg-background font-sans text-foreground antialiased">
+          {/* <ThemeProvider attribute="class" defaultTheme="system" enableSystem> */}
           <TRPCReactProvider>{props.children}</TRPCReactProvider>
           {/* <div className="absolute bottom-4 right-4">
             <ThemeToggle />
           </div>
             <Toaster /> */}
-        </ClerkProvider>
-        {/* </ThemeProvider> */}
-      </body>
-    </html>
+          {/* </ThemeProvider> */}
+        </body>
+      </html>
+    </ClerkProvider>
   );
 }

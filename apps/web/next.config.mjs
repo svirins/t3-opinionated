@@ -1,7 +1,7 @@
 // Importing env files here to validate on build
 import "./src/env.js";
 
-import { withAxiom } from "next-axiom";
+// import { withAxiom } from "next-axiom";
 
 /** @type {import("next").NextConfig} */
 const config = {
@@ -19,4 +19,5 @@ const config = {
   typescript: { ignoreBuildErrors: true },
 };
 
-export default withAxiom(config);
+// export default withAxiom(config);
+export default config;

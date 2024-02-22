@@ -2,8 +2,7 @@ import type {
   SignedInAuthObject,
   SignedOutAuthObject,
 } from "@clerk/nextjs/api";
-import type { CreateNextContextOptions } from "@trpc/server/adapters/next";
-import { getAuth } from "@clerk/nextjs/server";
+import { auth } from "@clerk/nextjs/server";
 import { initTRPC, TRPCError } from "@trpc/server";
 import superjson from "superjson";
 import { ZodError } from "zod";
@@ -22,8 +21,8 @@ const createInnerTRPCContext = ({ auth }: AuthContext) => {
   };
 };
 
-export const createTRPCContext = async (opts: CreateNextContextOptions) => {
-  return createInnerTRPCContext({ auth: getAuth(opts.req) });
+export const createTRPCContext = async () => {
+  return createInnerTRPCContext({ auth: auth() });
 };
 
 // 2. INITIALIZATION
