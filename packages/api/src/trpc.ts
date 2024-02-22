@@ -10,6 +10,7 @@ import type {
   SignedInAuthObject,
   SignedOutAuthObject,
 } from "@clerk/nextjs/api";
+import type { CreateNextContextOptions } from "@trpc/server/adapters/next";
 import { getAuth } from "@clerk/nextjs/server";
 import { initTRPC, TRPCError } from "@trpc/server";
 import superjson from "superjson";
@@ -22,26 +23,22 @@ interface AuthContext {
 }
 
 // 1. CONTEXT
+export const createTRPCContext = async (opts: CreateNextContextOptions) => {
+  const { req } = opts;
+  const session = getAuth(req);
 
-export const createTRPCContext = async ({
-  headers,
-  auth,
-}: {
-  headers: Headers;
-  auth: AuthContext;
-}) => {
-  const source = headers.get("x-trpc-source") ?? "unknown";
+  const userId = session.userId;
+  // const source = headers.get("x-trpc-source") ?? "unknown";
   // const session = auth ?? (getAuth(opts.req));
-  console.log(">>> tRPC Request from", source, "by", auth.auth?.user);
+  // console.log(">>> tRPC Request from", source, "by", auth.auth?.user);
 
   return {
-    auth,
     prisma,
+    userId,
   };
 };
 
 // 2. INITIALIZATION
-
 const t = initTRPC.context<typeof createTRPCContext>().create({
   transformer: superjson,
   errorFormatter: ({ shape, error }) => ({
@@ -54,15 +51,14 @@ const t = initTRPC.context<typeof createTRPCContext>().create({
 });
 
 // check if the user is signed in, otherwise through a UNAUTHORIZED CODE
-
-const isAuthed = t.middleware(({ next, ctx }) => {
-  if (!ctx.auth.auth?.user?.id) {
+const enforceUserIsAuthed = t.middleware(({ next, ctx }) => {
+  if (!ctx.userId) {
     throw new TRPCError({ code: "UNAUTHORIZED" });
   }
 
   return next({
     ctx: {
-      auth: ctx.auth,
+      auth: ctx.userId,
     },
   });
 });
@@ -75,4 +71,4 @@ export const createCallerFactory = t.createCallerFactory;
 
 export const createTRPCRouter = t.router;
 export const publicProcedure = t.procedure;
-export const protectedProcedure = t.procedure.use(isAuthed);
+export const protectedProcedure = t.procedure.use(enforceUserIsAuthed);
