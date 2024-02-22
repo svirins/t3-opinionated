@@ -1,9 +1,10 @@
 import type { Metadata, Viewport } from "next";
-import { AxiomWebVitals } from "next-axiom";
 import { Inter } from "next/font/google";
+import { ClerkProvider } from "@clerk/nextjs";
+import { AxiomWebVitals } from "next-axiom";
 
-import { ThemeProvider, ThemeToggle } from "@acme/ui/theme";
-import { Toaster } from "@acme/ui/toast";
+// import { ThemeProvider, ThemeToggle } from "@acme/ui/theme";
+// import { Toaster } from "@acme/ui/toast";
 
 import { env } from "~/env";
 import { TRPCReactProvider } from "~/trpc/react";
@@ -18,9 +19,7 @@ const inter = Inter({
 
 export const metadata: Metadata = {
   metadataBase: new URL(
-    env.VERCEL_ENV === "production"
-      ? ""
-      : "http://localhost:3000",
+    env.VERCEL_ENV === "production" ? "" : "http://localhost:3000",
   ),
   title: "",
   description: "",
@@ -48,17 +47,16 @@ export default function RootLayout(props: { children: React.ReactNode }) {
   return (
     <html lang="en" className={`${inter.variable}`} suppressHydrationWarning>
       <AxiomWebVitals />
-      <body
-        className=
-          "min-h-screen font-sans antialiased bg-background text-foreground"
-      >
-        <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+      <body className="min-h-screen bg-background font-sans text-foreground antialiased">
+        {/* <ThemeProvider attribute="class" defaultTheme="system" enableSystem> */}
+        <ClerkProvider>
           <TRPCReactProvider>{props.children}</TRPCReactProvider>
-          <div className="absolute bottom-4 right-4">
+          {/* <div className="absolute bottom-4 right-4">
             <ThemeToggle />
           </div>
-          <Toaster />
-        </ThemeProvider>
+            <Toaster /> */}
+        </ClerkProvider>
+        {/* </ThemeProvider> */}
       </body>
     </html>
   );
