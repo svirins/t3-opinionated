@@ -4,8 +4,12 @@ import { PrismaClient } from "@prisma/client";
 
 const prismaClientSingleton = () => {
   // return new PrismaClient({ log: ["error"] }).$extends(withAccelerate());
-  return new PrismaClient({ log:
-      process.env.NODE_ENV === "development" ? ["query", "error", "warn"] : ["error"],});
+  return new PrismaClient({
+    log:
+      process.env.NODE_ENV === "development"
+        ? ["query", "error", "warn"]
+        : ["error"],
+  });
 };
 
 declare global {
@@ -16,7 +20,7 @@ declare global {
 
 // we are exporting global prisma instance here.
 // I can be used in every place where we import prisma
-export const prisma = globalThis.prisma ?? prismaClientSingleton();
+export const db = globalThis.prisma ?? prismaClientSingleton();
 
 // we are exporting all prisma types here
 export * from "@prisma/client";

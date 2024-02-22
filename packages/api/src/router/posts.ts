@@ -4,7 +4,7 @@ import { createTRPCRouter, protectedProcedure, publicProcedure } from "../trpc";
 
 export const postRouter = createTRPCRouter({
   all: publicProcedure.query(async ({ ctx }) => {
-    const data = await ctx.prisma.post.findMany({
+    const data = await ctx.db.post.findMany({
       // cacheStrategy: { ttl: 60 }
     });
     return data;
@@ -13,8 +13,8 @@ export const postRouter = createTRPCRouter({
   create: protectedProcedure
     .input(CreatePostSchema)
     .mutation(async ({ ctx, input }) => {
-      const authorId = ctx.auth.userId!;
-      return ctx.prisma.post.create({
+      const authorId = ctx.user.id!;
+      return ctx.db.post.create({
         data: { authorId, content: input.content },
       });
     }),

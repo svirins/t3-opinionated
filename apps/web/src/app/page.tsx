@@ -5,7 +5,9 @@ import { api } from "~/trpc/server";
 export default async function HomePage() {
   // You can await this here if you don't want to show Suspense fallback below
   const hello = await api.test.hello();
+  console.log("🚀 ~ HomePage ~ hello:", hello);
   const protectedHello = await api.test.protectedHello();
+  console.log("🚀 ~ HomePage ~ protectedHello:", protectedHello);
   return (
     <main className="container h-screen py-16">
       <div className="flex flex-col items-center justify-center gap-4">

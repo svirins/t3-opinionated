@@ -21,14 +21,14 @@ export const env = createEnv({
     DATABASE_URL: z.string(),
     CLERK_SECRET_KEY: z.string(),
   },
-  /**
+  /**p
    * Specify your client-side environment variables schema here.
    * For them to be exposed to the client, prefix them with `NEXT_PUBLIC_`.
    */
   client: {
     NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY: z.string(),
-    // NEXT_PUBLIC_CLERK_SIGN_IN_URL: z.string(),
     // NEXT_PUBLIC_CLERK_SIGN_UP_URL: z.string(),
+    // NEXT_PUBLIC_CLERK_SIGN_IN_URL: z.string(),
     // NEXT_PUBLIC_CLERK_AFTER_SIGN_IN_URL: z.string(),
     // NEXT_PUBLIC_CLERK_AFTER_SIGN_UP_URL: z.string(),
   },
