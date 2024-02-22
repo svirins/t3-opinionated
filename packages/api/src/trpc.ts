@@ -1,11 +1,3 @@
-/**
- * YOU PROBABLY DON'T NEED TO EDIT THIS FILE, UNLESS:
- * 1. You want to modify request context (see Part 1)
- * 2. You want to create a new middleware or type of procedure (see Part 3)
- *
- * tl;dr - this is where all the tRPC server stuff is created and plugged in.
- * The pieces you will need to use are documented accordingly near the end
- */
 import type {
   SignedInAuthObject,
   SignedOutAuthObject,
@@ -23,19 +15,15 @@ interface AuthContext {
 }
 
 // 1. CONTEXT
-export const createTRPCContext = async (opts: CreateNextContextOptions) => {
-  const { req } = opts;
-  const session = getAuth(req);
-
-  const userId = session.userId;
-  // const source = headers.get("x-trpc-source") ?? "unknown";
-  // const session = auth ?? (getAuth(opts.req));
-  // console.log(">>> tRPC Request from", source, "by", auth.auth?.user);
-
+const createInnerTRPCContext = ({ auth }: AuthContext) => {
   return {
+    auth,
     prisma,
-    userId,
   };
+};
+
+export const createTRPCContext = async (opts: CreateNextContextOptions) => {
+  return createInnerTRPCContext({ auth: getAuth(opts.req) });
 };
 
 // 2. INITIALIZATION
@@ -52,13 +40,13 @@ const t = initTRPC.context<typeof createTRPCContext>().create({
 
 // check if the user is signed in, otherwise through a UNAUTHORIZED CODE
 const enforceUserIsAuthed = t.middleware(({ next, ctx }) => {
-  if (!ctx.userId) {
+  if (!ctx.auth.userId) {
     throw new TRPCError({ code: "UNAUTHORIZED" });
   }
 
   return next({
     ctx: {
-      auth: ctx.userId,
+      auth: ctx.auth,
     },
   });
 });

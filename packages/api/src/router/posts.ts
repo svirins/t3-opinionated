@@ -24,6 +24,9 @@ export const postRouter = createTRPCRouter({
   create: protectedProcedure
     .input(CreatePostSchema)
     .mutation(async ({ ctx, input }) => {
-      return ctx.prisma.post.create({ data: input });
+      const authorId = ctx.userId!;
+      return ctx.prisma.post.create({
+        data: { authorId, content: input.content },
+      });
     }),
 });
