@@ -1,5 +1,6 @@
 # t3-m
 
+- monorepo with Turborepo and pnpm
 - Framework: Next.js
 - DB: Postgres (or any)
 - ORM: Prisma + SafeQL linter + ERD diagrams generator
