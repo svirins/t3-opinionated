@@ -4,7 +4,7 @@
   "version": "0.1.0",
   "type": "module",
   "exports": {
-    ".": "./src/index.ts",
+    "./cn": "./src/lib/utils.ts",
     "./button": "./src/button.tsx",
     "./form": "./src/form.tsx",
     "./input": "./src/input.tsx",
