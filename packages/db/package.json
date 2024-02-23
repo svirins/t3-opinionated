@@ -17,7 +17,7 @@
     "studio": "pnpm with-env prisma studio",
     "with-env": "dotenv -e ../../.env --",
     "seed": "bun  ./seed/seed.ts",
-    "lint": "eslint --ext .ts ."
+    "lint": "eslint --ext .ts . --ignore-path ../../.gitignore"
   },
   "dependencies": {
     "@prisma/client": "5.10.2",
