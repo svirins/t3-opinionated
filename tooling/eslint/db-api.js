@@ -1,5 +1,7 @@
 /** @type {import("eslint").Linter.Config} */
-require("dotenv").config();
+import dotenv from "dotenv";
+
+dotenv.config();
 
 const config = {
   extends: ["turbo", "eslint:recommended", "prettier"],
@@ -65,4 +67,4 @@ const config = {
   reportUnusedDisableDirectives: true,
 };
 
-module.exports = config;
+export default config;

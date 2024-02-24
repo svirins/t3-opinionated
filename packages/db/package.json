@@ -24,7 +24,6 @@
     "@prisma/extension-accelerate": "^0.6.3"
   },
   "devDependencies": {
-    "@acme/prettier-config": "workspace:*",
     "@acme/tsconfig": "workspace:*",
     "@mermaid-js/mermaid-cli": "^10.8.0",
     "@ts-safeql/eslint-plugin": "^2.0.3",
@@ -40,6 +39,5 @@
     "prisma-erd-generator": "^1.11.2",
     "tsup": "8.0.2",
     "typescript": "^5.3.3"
-  },
-  "prettier": "@acme/prettier-config"
+  }
 }
