@@ -16,7 +16,7 @@
     "format": "pnpm with-env prisma format",
     "studio": "pnpm with-env prisma studio",
     "with-env": "dotenv -e ../../.env --",
-    "seed": "bun  ./seed/seed.ts",
+    "seed": "bun ./seed/seed.ts",
     "lint": "eslint --ext .ts . --ignore-path ../../.gitignore"
   },
   "dependencies": {
