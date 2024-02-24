@@ -1,4 +1,4 @@
-# t3-m
+# t3-opinionated
 
 - monorepo with Turborepo and pnpm
 - Framework: Next.js
